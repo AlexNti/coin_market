@@ -14,7 +14,7 @@ const spin = keyframes`
 `
 
 export const Logo = forwardRef<ImageProps, "img">((props, ref) => {
-  const prefersReducedMotion = usePrefersReducedMotion()
+   const prefersReducedMotion = usePrefersReducedMotion()
 
   const animation = prefersReducedMotion
     ? undefined
