@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 
-import { HttpService } from 'types';
-import { apiConfig } from 'config';
+import { HttpService } from 'src/types';
+import { apiConfig } from 'src/config';
 
 const axiosHttpService = (): HttpService => {
   const axiosInstance: AxiosInstance = axios.create({});

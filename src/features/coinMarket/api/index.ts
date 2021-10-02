@@ -1,4 +1,4 @@
-import { axiosHttpService } from 'utils/httpService';
+import { axiosHttpService } from 'src/utils/httpService';
 import makeCoinMarketApi from './api';
 export * from './api';
 
