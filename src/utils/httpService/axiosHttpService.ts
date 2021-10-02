@@ -17,8 +17,6 @@ const axiosHttpService = (): HttpService => {
   }
 
   async function GET(url: string, params?: any, headers?: any): Promise<any> {
-    console.log(`${apiConfig.baseUrl}${url}`);
-
     return axiosInstance({
       method: 'GET',
       url: `${apiConfig.baseUrl}${url}`,

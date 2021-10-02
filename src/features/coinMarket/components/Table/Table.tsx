@@ -22,7 +22,7 @@ const CoinsMarketsTable = ({ coins, handleSelectCoin }: CoinsMarketsTableProps):
       <Thead>
         <Tr>
           {coinKeys.map((coinKey) => (
-            <Th key={coinKey} color="gray.100">
+            <Th key={coinKey} color="gray.400">
               {coinKey}
             </Th>
           ))}
@@ -31,12 +31,12 @@ const CoinsMarketsTable = ({ coins, handleSelectCoin }: CoinsMarketsTableProps):
       <Tbody>
         {coins.map((coin) => (
           <Tr onClick={() => handleSelectCoin(coin.id)} key={coin.id}>
-            <Th>{coin.name}</Th>
-            <Th>{coin.symbol}</Th>
-            <Th>{coin.current_price}</Th>
-            <Th>{coin.high_24h}</Th>
-            <Th>{coin.low_24h}</Th>
-            <Th>{coin.price_change_percentage_24h}</Th>
+            <Td>{coin.name}</Td>
+            <Td>{coin.symbol}</Td>
+            <Td>{coin.current_price}</Td>
+            <Td>{coin.high_24h}</Td>
+            <Td>{coin.low_24h}</Td>
+            <Td>{coin.price_change_percentage_24h}</Td>
           </Tr>
         ))}
       </Tbody>

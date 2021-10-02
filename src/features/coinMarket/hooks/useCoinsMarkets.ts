@@ -8,6 +8,8 @@ export type UseCoinsMarketsReturn = {
   coinsError: unknown;
   page: number;
   handleSelectCoin: (coinId: string) => void;
+  handleNextPage: () => void;
+  handlePreviousPage: () => void;
 };
 const useCoinsMarkets = (): UseCoinsMarketsReturn => {
   const [page, setCurrentPage] = React.useState(1);
@@ -17,7 +19,23 @@ const useCoinsMarkets = (): UseCoinsMarketsReturn => {
     console.log(coinId);
   }, []);
 
-  return { isLoading, coins, coinsError, page, handleSelectCoin };
+  const handleNextPage = React.useCallback(() => {
+    setCurrentPage((currentPage) => currentPage + 1);
+  }, []);
+
+  const handlePreviousPage = React.useCallback(() => {
+    if (page > 1) setCurrentPage((currentPage) => currentPage - 1);
+  }, [page]);
+
+  return {
+    isLoading,
+    coins,
+    coinsError,
+    page,
+    handleSelectCoin,
+    handlePreviousPage,
+    handleNextPage
+  };
 };
 
 export default useCoinsMarkets;
