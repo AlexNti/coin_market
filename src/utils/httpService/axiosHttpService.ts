@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 
-import { HttpService } from 'types';
-import { apiConfig } from 'config';
+import { HttpService } from 'src/types';
+import { apiConfig } from 'src/config';
 
 const axiosHttpService = (): HttpService => {
   const axiosInstance: AxiosInstance = axios.create({});
@@ -17,6 +17,8 @@ const axiosHttpService = (): HttpService => {
   }
 
   async function GET(url: string, params?: any, headers?: any): Promise<any> {
+    console.log(`${apiConfig.baseUrl}${url}`);
+
     return axiosInstance({
       method: 'GET',
       url: `${apiConfig.baseUrl}${url}`,

@@ -13,4 +13,5 @@ export type CoinItem = {
   high_24h: number;
   low_24h: number;
   price_change_percentage_24h: number;
+  id: string;
 };

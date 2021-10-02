@@ -1,11 +1,11 @@
-const isProduction = process.env.APP_ENV === 'production';
+const isProduction = process.env.REACT_APP_APP_ENV === 'production';
 
 const devApiConfig = {
-  baseUrl: process.env.BASE_URL_DEV
+  baseUrl: process.env.REACT_APP_BASE_URL_DEV
 };
 
 const prodApiConfig = {
-  baseUrl: process.env.BASE_URL_PROD
+  baseUrl: process.env.REACT_APP_BASE_URL_PROD
 };
 
 const apiConfig = isProduction ? prodApiConfig : devApiConfig;

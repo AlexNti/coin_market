@@ -1,14 +1,14 @@
-import { MakeApi } from 'types';
+import { MakeApi } from 'src/types';
 import { APIPaths, CoinItem } from '../types';
 
 const DEFAULT_CURRENCY = 'usd';
-const NUMBER_OF_ITEMS_PER_PAGE = 100;
+const NUMBER_OF_ITEMS_PER_PAGE = 30;
 
 export type GetCoinsMarketsParams = {
-  page: string;
+  page?: number;
 };
 export type CoinApi = {
-  getCoinsMarkets: ({ page }: GetCoinsMarketsParams) => Promise<CoinItem[] | string>;
+  getCoinsMarkets: ({ page }: GetCoinsMarketsParams) => Promise<CoinItem[]>;
 };
 
 const makeCoinMarketApi = ({ httpService }: MakeApi): CoinApi => {
