@@ -1,10 +1,11 @@
 import React from 'react';
 
-import { Table } from './components/Table';
-import { Flex } from '@chakra-ui/react';
+import { Table, Pagination } from './components';
+import { Flex, Spinner } from '@chakra-ui/react';
 
 import { useCoinsMarkets } from './hooks';
-import { Pagination } from 'src/features/coinMarket/components/Pagination';
+
+import { Alert } from 'src/components';
 
 const CoinsMarkets = (): JSX.Element => {
   const {
@@ -17,6 +18,21 @@ const CoinsMarkets = (): JSX.Element => {
     handlePreviousPage
   } = useCoinsMarkets();
 
+  if (isLoading)
+    return (
+      <Flex alignItems="center" justifyContent="center">
+        <Spinner size="lg"></Spinner>
+      </Flex>
+    );
+
+  if (coinsError) {
+    return (
+      <Alert
+        title="Error At fetching Coins Market"
+        description="An error occured while fetching alert"
+      ></Alert>
+    );
+  }
   return (
     <Flex alignItems="center" flexDirection="column" w="100%" p={4} color="white">
       <Pagination
