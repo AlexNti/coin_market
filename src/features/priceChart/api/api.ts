@@ -7,7 +7,7 @@ import moment from 'moment';
 export type GetPriceChartParams = {
   coinID: string;
 
-  days: number;
+  days: string;
 };
 
 export type CoinChartAPI = {

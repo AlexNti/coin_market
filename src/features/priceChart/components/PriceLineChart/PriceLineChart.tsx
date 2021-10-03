@@ -1,10 +1,15 @@
 import React from 'react';
 
 import { ResponsiveLine } from '@nivo/line';
+
 import { PriceChartSeries } from '../../types';
+import { TIME_PRECISION } from '@nivo/scales';
 
 type PriceLineChartProps = {
   chartData: PriceChartSeries;
+  precision: TIME_PRECISION;
+  axisBottom: string;
+  tickValues: string;
 };
 
 const theme = {
@@ -33,7 +38,12 @@ const theme = {
   }
 };
 
-const PriceLineChart = ({ chartData }: PriceLineChartProps): JSX.Element => {
+const PriceLineChart = ({
+  chartData,
+  precision,
+  tickValues,
+  axisBottom
+}: PriceLineChartProps): JSX.Element => {
   return (
     <ResponsiveLine
       theme={theme}
@@ -44,15 +54,15 @@ const PriceLineChart = ({ chartData }: PriceLineChartProps): JSX.Element => {
         type: 'time',
         format: '%Y-%m-%dT%H:%M:%SZ',
         useUTC: false,
-        precision: 'minute'
+        precision
       }}
       yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
       xFormat="time:%Y-%m-%d"
       axisTop={null}
       axisRight={null}
       axisBottom={{
-        format: '%H:%M',
-        tickValues: 'every 60 minutes'
+        format: axisBottom,
+        tickValues
       }}
       tooltip={(value) => {
         return <div>Price:{(value.point.data.y as number).toFixed(2)} </div>;
