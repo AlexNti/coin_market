@@ -7,19 +7,25 @@ export type UseCoinDetailsReturn = {
   isCoinDetailsLoading: boolean;
   coinDetails: CoinDetails | undefined;
   coinsDetailsError: unknown;
+  handleGoToMainPage: () => void;
 };
 const useCoinsMarkets = (): UseCoinDetailsReturn => {
-  const { match } = useRouter();
+  const { match, history } = useRouter();
   const {
     isLoading: isCoinDetailsLoading,
     data: coinDetails,
     error: coinsDetailsError
   } = getCoinDetails({ coinID: (match.params.coinID as string) || '' });
 
+  const handleGoToMainPage = React.useCallback(() => {
+    history.push('/');
+  }, [history]);
+
   return {
     isCoinDetailsLoading,
     coinDetails,
-    coinsDetailsError
+    coinsDetailsError,
+    handleGoToMainPage
   };
 };
 

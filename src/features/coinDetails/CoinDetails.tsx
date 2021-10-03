@@ -2,12 +2,14 @@ import React from 'react';
 
 import { useCoinDetails } from './hooks';
 import { DetailsPanel, Description } from './components';
-import { Flex, Box, Spinner } from '@chakra-ui/react';
+import { Flex, Box, Spinner, IconButton } from '@chakra-ui/react';
 import PriceChart from 'src/features/priceChart/PriceChart';
 import { NotFound404 } from 'src/components';
+import { ArrowBackIcon } from '@chakra-ui/icons';
 
 const CoinDetails = (): JSX.Element => {
-  const { coinDetails, isCoinDetailsLoading, coinsDetailsError } = useCoinDetails();
+  const { coinDetails, isCoinDetailsLoading, coinsDetailsError, handleGoToMainPage } =
+    useCoinDetails();
 
   if (isCoinDetailsLoading) {
     return (
@@ -23,6 +25,13 @@ const CoinDetails = (): JSX.Element => {
   return (
     <Flex flexDirection="row">
       <Flex pr={3} flex={1} flexDirection="column">
+        <IconButton
+          width={50}
+          onClick={handleGoToMainPage}
+          aria-label="Go to main"
+          size="lg"
+          icon={<ArrowBackIcon />}
+        />
         <Description description={coinDetails?.description.en || ''} />
         <Box pt={3} height={650}>
           <PriceChart />
