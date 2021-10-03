@@ -1,5 +1,5 @@
 import { useQuery, UseQueryResult } from 'react-query';
-import { coinApi, GetCoinsMarketsParams, CoinApi } from '../api';
+import { coinApi, GetCoinsMarketsParams } from '../api';
 import { CoinItem, QUERY_KEYS } from '../types';
 
 export const getCoinsMarkets = ({ page = 1 }: GetCoinsMarketsParams): UseQueryResult<CoinItem[]> =>
