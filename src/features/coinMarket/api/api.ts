@@ -1,8 +1,6 @@
+import { DEFAULT_CURRENCY, NUMBER_OF_ITEMS_PER_PAGE } from 'src/constants';
 import { MakeApi } from 'src/types';
 import { APIPaths, CoinItem } from '../types';
-
-const DEFAULT_CURRENCY = 'usd';
-const NUMBER_OF_ITEMS_PER_PAGE = 30;
 
 export type GetCoinsMarketsParams = {
   page?: number;
