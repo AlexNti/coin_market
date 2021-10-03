@@ -5,17 +5,21 @@ import { BrowserRouter } from 'react-router-dom';
 import { Routes } from 'src/routes';
 import { ColorModeSwitcher } from 'src/ColorModeSwitcher';
 
+import { ErrorBoundary } from 'src/components';
+
 const queryClient = new QueryClient();
 
 export const App = (): JSX.Element => {
   return (
-    <ChakraProvider theme={theme}>
-      <QueryClientProvider client={queryClient}>
-        <ColorModeSwitcher />
-        <BrowserRouter>
-          <Routes></Routes>
-        </BrowserRouter>
-      </QueryClientProvider>
-    </ChakraProvider>
+    <ErrorBoundary>
+      <ChakraProvider theme={theme}>
+        <QueryClientProvider client={queryClient}>
+          <ColorModeSwitcher />
+          <BrowserRouter>
+            <Routes></Routes>
+          </BrowserRouter>
+        </QueryClientProvider>
+      </ChakraProvider>
+    </ErrorBoundary>
   );
 };
