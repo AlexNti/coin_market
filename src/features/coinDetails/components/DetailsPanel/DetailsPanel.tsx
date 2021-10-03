@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { Box, Flex, Avatar, Text } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import { UseCoinDetailsReturn } from '../../hooks';
 import PanelItem from './PanelItem';
+import PanelHeader from './PanelHeader';
 
 type DetailsPanelProps = Pick<UseCoinDetailsReturn, 'coinDetails'>;
 //TODO MAKE AUTOMATE FUNCTION FOR PANEL ITEM
@@ -17,17 +18,11 @@ const DetailsPanel = ({ coinDetails }: DetailsPanelProps): JSX.Element => {
       height={800}
     >
       <Flex alignItems="center" borderBottom="1px" height={100} borderColor="gray.600">
-        <Flex alignItems="center" p={4}>
-          <Box mr={3}>
-            <Avatar src={coinDetails?.image.small} />
-          </Box>
-          <Flex alignItems="flex-start" flexDirection="column">
-            <Text color="gray.200">{coinDetails?.name}</Text>
-            <Text color="gray.500" fontSize="sm">
-              {coinDetails?.symbol.toUpperCase()}
-            </Text>
-          </Flex>
-        </Flex>
+        <PanelHeader
+          name={coinDetails?.name || ''}
+          image={coinDetails?.image.small || ''}
+          symbol={coinDetails?.symbol.toUpperCase() || ''}
+        />
       </Flex>
       <Flex flexDirection="column" p={4}>
         <PanelItem
