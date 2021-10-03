@@ -54,8 +54,8 @@ const PriceLineChart = ({ chartData }: PriceLineChartProps): JSX.Element => {
         format: '%H:%M',
         tickValues: 'every 60 minutes'
       }}
-      tooltip={(point) => {
-        return <div></div>;
+      tooltip={(value) => {
+        return <div>Price:{(value.point.data.y as number).toFixed(2)} </div>;
       }}
       axisLeft={{
         tickSize: 5,

@@ -2,20 +2,21 @@ import React from 'react';
 
 import { useCoinDetails } from './hooks';
 import { DetailsPanel, Description } from './components';
-import { Flex } from '@chakra-ui/react';
+import { Flex, Box } from '@chakra-ui/react';
 import PriceChart from 'src/features/priceChart/PriceChart';
 
 const CoinDetails = (): JSX.Element => {
   const { coinDetails, isCoinDetailsLoading, coinsDetailsError } = useCoinDetails();
 
   return (
-    <Flex flexDirection="column">
-      <Flex>
+    <Flex flexDirection="row">
+      <Flex pr={3} flex={1} flexDirection="column">
         <Description description={coinDetails?.description.en || ''} />
-        <DetailsPanel coinDetails={coinDetails} />
+        <Box pt={3} height={650}>
+          <PriceChart />
+        </Box>
       </Flex>
-
-      <PriceChart />
+      <DetailsPanel coinDetails={coinDetails} />
     </Flex>
   );
 };
