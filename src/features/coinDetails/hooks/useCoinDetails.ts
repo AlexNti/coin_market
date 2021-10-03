@@ -10,7 +10,7 @@ export type UseCoinDetailsReturn = {
   handleGoToMainPage: () => void;
 };
 const useCoinsMarkets = (): UseCoinDetailsReturn => {
-  const { match, history } = useRouter();
+  const { match, history, location } = useRouter();
   const {
     isLoading: isCoinDetailsLoading,
     data: coinDetails,
@@ -18,7 +18,7 @@ const useCoinsMarkets = (): UseCoinDetailsReturn => {
   } = getCoinDetails({ coinID: (match.params.coinID as string) || '' });
 
   const handleGoToMainPage = React.useCallback(() => {
-    history.push('/');
+    history.push('/', { ...history.location.state });
   }, [history]);
 
   return {

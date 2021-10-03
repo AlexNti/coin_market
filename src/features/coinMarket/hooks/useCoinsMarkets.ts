@@ -13,13 +13,21 @@ export type UseCoinsMarketsReturn = {
   handlePreviousPage: () => void;
 };
 const useCoinsMarkets = (): UseCoinsMarketsReturn => {
-  const [page, setCurrentPage] = React.useState(1);
+  const { history, location } = useRouter();
+  const [page, setCurrentPage] = React.useState((location?.state?.page as number) || 1);
   const { isLoading, data: coins, error: coinsError } = getCoinsMarkets({ page });
-  const { history } = useRouter();
 
-  const handleSelectCoin = React.useCallback((coinId: string) => {
-    history.push(`coin-details/${coinId}`);
-  }, []);
+  /**
+   * We use the state of history in order to memory save the current page that we are.
+   * If you navigate to coins details and back to our main screen we will continue from
+   * the page that we left earlier.
+   */
+  const handleSelectCoin = React.useCallback(
+    (coinId: string) => {
+      history.push(`coin-details/${coinId}`, { page });
+    },
+    [page]
+  );
 
   const handleNextPage = React.useCallback(() => {
     setCurrentPage((currentPage) => currentPage + 1);

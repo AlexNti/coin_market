@@ -6,7 +6,9 @@ type ColorModeSwitcherProps = Omit<IconButtonProps, 'aria-label'>;
 export const ColorModeSwitcher: React.FC<ColorModeSwitcherProps> = (props) => {
   const { setColorMode } = useColorMode();
 
-  setColorMode('dark');
+  React.useEffect(() => {
+    setColorMode('dark');
+  }, []);
 
   return null;
 };
