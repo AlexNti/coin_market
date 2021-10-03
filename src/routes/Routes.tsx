@@ -9,7 +9,7 @@ const Routes = (): JSX.Element => {
   return (
     <Layout>
       <Switch>
-        <Route exact path="/coin-details/:coinID" component={CoinDetails} />
+        <Route path="/coin-details/:coinID" component={CoinDetails} />
         <Route exact path="/" component={CoinsMarkets} />
       </Switch>
     </Layout>

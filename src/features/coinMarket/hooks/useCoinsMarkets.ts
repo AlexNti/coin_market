@@ -1,6 +1,7 @@
 import { getCoinsMarkets } from '../services';
 import React from 'react';
 import { CoinItem } from 'src/features/coinMarket/types';
+import { useRouter } from 'src/hooks';
 
 export type UseCoinsMarketsReturn = {
   isLoading: boolean;
@@ -14,9 +15,10 @@ export type UseCoinsMarketsReturn = {
 const useCoinsMarkets = (): UseCoinsMarketsReturn => {
   const [page, setCurrentPage] = React.useState(1);
   const { isLoading, data: coins, error: coinsError } = getCoinsMarkets({ page });
+  const { history } = useRouter();
 
   const handleSelectCoin = React.useCallback((coinId: string) => {
-    console.log(coinId);
+    history.push(`coin-details/${coinId}`);
   }, []);
 
   const handleNextPage = React.useCallback(() => {
