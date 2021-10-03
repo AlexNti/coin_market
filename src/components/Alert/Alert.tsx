@@ -1,10 +1,4 @@
-import {
-  Alert as ChakraAlert,
-  AlertIcon,
-  AlertTitle,
-  AlertDescription,
-  CloseButton
-} from '@chakra-ui/react';
+import { Alert as ChakraAlert, AlertIcon, AlertTitle, AlertDescription } from '@chakra-ui/react';
 import React from 'react';
 
 type AlertProps = {
