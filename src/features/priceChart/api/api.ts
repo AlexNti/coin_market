@@ -2,6 +2,8 @@ import { MakeApi } from 'src/types';
 import { APIPaths, PriceChart } from '../types';
 import { DEFAULT_CURRENCY } from 'src/constants';
 
+import moment from 'moment';
+
 export type GetPriceChartParams = {
   coinID: string;
 
@@ -23,7 +25,7 @@ const makeCoinChartAPI = ({ httpService }: MakeApi): CoinChartAPI => {
     );
 
     const transformedPriceChart = response.data.prices.map((prices: Array<Array<string>>) => {
-      return { x: prices[0], y: prices[1] };
+      return { x: moment.parseZone(prices[0]).utc().format(), y: prices[1] };
     });
     const coinDetails = transformedPriceChart as PriceChart;
 
