@@ -36,7 +36,9 @@ export type CoinDetails = {
       usd: Date;
     };
   };
-  description: string;
+  description: {
+    en: string;
+  };
   links: { [index: string]: Record<string, Array<string>> };
   community_data: { facebook_likes: number; twitter_followers: number; reddit_subscribers: number };
   developer_data: { forks: number; stars: number; subscribers: number; total_issues: number };

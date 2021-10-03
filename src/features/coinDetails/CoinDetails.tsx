@@ -1,12 +1,18 @@
 import React from 'react';
 
 import { useCoinDetails } from './hooks';
-import { DetailsPanel } from './components';
+import { DetailsPanel, Description } from './components';
+import { Flex, Text } from '@chakra-ui/react';
 
 const CoinDetails = (): JSX.Element => {
   const { coinDetails, isCoinDetailsLoading, coinsDetailsError } = useCoinDetails();
 
-  return <DetailsPanel coinDetails={coinDetails} />;
+  return (
+    <Flex>
+      <Description description={coinDetails?.description.en || ''} />
+      <DetailsPanel coinDetails={coinDetails} />;
+    </Flex>
+  );
 };
 
 export default CoinDetails;
