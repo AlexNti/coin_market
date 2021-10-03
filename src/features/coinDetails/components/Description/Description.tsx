@@ -4,7 +4,7 @@ type DescriptionProps = { description: string };
 
 const Description = ({ description }: DescriptionProps): JSX.Element => {
   return (
-    <Flex overflow={'hidden'} height={'150px'} width={'100%'}>
+    <Flex overflow={'hidden'} maxHeight={'150px'} width={'100%'}>
       <Text>{description}</Text>
     </Flex>
   );
