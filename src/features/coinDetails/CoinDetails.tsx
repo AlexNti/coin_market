@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useCoinDetails } from './hooks';
-import { DetailsPanel, Description } from './components';
+import { DetailsPanel, Description, BackButton } from './components';
 import { Flex, Box, Spinner, IconButton } from '@chakra-ui/react';
 import PriceChart from 'src/features/priceChart/PriceChart';
 import { NotFound404 } from 'src/components';
@@ -25,13 +25,7 @@ const CoinDetails = (): JSX.Element => {
   return (
     <Flex flexDirection="row">
       <Flex pr={3} flex={1} flexDirection="column">
-        <IconButton
-          width={50}
-          onClick={handleGoToMainPage}
-          aria-label="Go to main"
-          size="lg"
-          icon={<ArrowBackIcon />}
-        />
+        <BackButton handleClick={handleGoToMainPage} />
         <Description description={coinDetails?.description.en || ''} />
         <Box pt={3} height={650}>
           <PriceChart />
