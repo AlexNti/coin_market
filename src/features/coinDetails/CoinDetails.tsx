@@ -2,10 +2,9 @@ import React from 'react';
 
 import { useCoinDetails } from './hooks';
 import { DetailsPanel, Description, BackButton } from './components';
-import { Flex, Box, Spinner, IconButton } from '@chakra-ui/react';
+import { Flex, Box, Spinner } from '@chakra-ui/react';
 import PriceChart from 'src/features/priceChart/PriceChart';
 import { NotFound404 } from 'src/components';
-import { ArrowBackIcon } from '@chakra-ui/icons';
 
 const CoinDetails = (): JSX.Element => {
   const { coinDetails, isCoinDetailsLoading, coinsDetailsError, handleGoToMainPage } =
