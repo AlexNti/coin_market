@@ -13,7 +13,7 @@ const makeCoinDetailsApi = ({ httpService }: MakeApi): CoinDetailsApi => {
   const getCoinDetails = async ({ coinID }: GetCoinDetailsParams) => {
     const response = await httpService.GET(
       `${APIPaths.COIN_DETAILS}/${coinID}`,
-
+      { localization: false, tickers: false, sparkline: false },
       {
         'Content-Type': 'application/json'
       }

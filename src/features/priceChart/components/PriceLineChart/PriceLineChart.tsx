@@ -61,6 +61,7 @@ const PriceLineChart = ({
       axisTop={null}
       axisRight={null}
       axisBottom={{
+        legend: 'Time',
         format: axisBottom,
         tickValues
       }}
@@ -71,7 +72,7 @@ const PriceLineChart = ({
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: 'count',
+        legend: 'Dollars',
         legendOffset: -40,
         legendPosition: 'middle'
       }}
