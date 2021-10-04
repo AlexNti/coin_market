@@ -3,6 +3,7 @@ import React from 'react';
 import { CoinItem } from 'src/features/coinMarket/types';
 import { useRouter } from 'src/hooks';
 
+import storage from 'src/utils/storage';
 export type UseCoinsMarketsReturn = {
   isLoading: boolean;
   coins: CoinItem[] | undefined;
@@ -13,18 +14,13 @@ export type UseCoinsMarketsReturn = {
   handlePreviousPage: () => void;
 };
 const useCoinsMarkets = (): UseCoinsMarketsReturn => {
-  const { history, location } = useRouter();
-  const [page, setCurrentPage] = React.useState((location?.state?.page as number) || 1);
+  const { history } = useRouter();
+  const [page, setCurrentPage] = React.useState(storage.session.read('page') || 1);
   const { isLoading, data: coins, error: coinsError } = getCoinsMarkets({ page });
 
-  /**
-   * We use the state of history in order to memory save the current page that we are.
-   * If you navigate to coins details and back to our main screen we will continue from
-   * the page that we left earlier.
-   */
   const handleSelectCoin = React.useCallback(
     (coinId: string) => {
-      history.push(`coin-details/${coinId}`, { page });
+      history.push(`coin-details/${coinId}`);
     },
     [page]
   );
@@ -36,6 +32,27 @@ const useCoinsMarkets = (): UseCoinsMarketsReturn => {
   const handlePreviousPage = React.useCallback(() => {
     if (page > 1) setCurrentPage((currentPage) => currentPage - 1);
   }, [page]);
+
+  /**
+   * Save page session to storage when so when we navigate back from coins-details
+   * we will continue from the page the we were previously.
+   *
+   */
+  React.useEffect(() => {
+    storage.session.write('page', page);
+  }, [page]);
+
+  /**
+   * Clear the session storage when we are refreshing the browser.
+   */
+  React.useEffect(() => {
+    window.onbeforeunload = () => {
+      storage.session.clear();
+    };
+    return () => {
+      window.onbeforeunload = null;
+    };
+  }, []);
 
   return {
     isLoading,
