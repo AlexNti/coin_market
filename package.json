@@ -18,7 +18,6 @@
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "axios": "^0.22.0",
-    "framer-motion": "^4.0.0",
     "history": "^5.0.1",
     "moment": "^2.29.1",
     "react": "^17.0.2",
